@@ -8,7 +8,7 @@ export default defineConfig({
 		port: 3000,
 		proxy: {
 			"/api": {
-				target: "twitter-clone-five-gilt.vercel.app",
+				target: "https://twitter-clone-five-gilt.vercel.app",
 				changeOrigin: true,
 			},
 		},
