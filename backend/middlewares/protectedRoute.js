@@ -26,3 +26,15 @@ export const protectedRoute = async (req, res, next) => {
     return next(new ApiError(500, "Internal Server Error"));
   }
 };
+
+export const authenticate = (req: Request, res: Response, next: NextFunction) => {
+  if (!token) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET!);
+    req.user = payload;
+    next();
+  } catch {
+    res.status(401).json({ error: "Invalid token" });
+  }
+};
